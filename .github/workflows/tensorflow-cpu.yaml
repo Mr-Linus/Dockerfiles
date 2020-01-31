@@ -9,6 +9,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build Dockerfile
         run: |
-          sudo docker build -f ./tensorflow/gpu/Dockerfile \
-          --build-arg TF_PACKAGE_VERSION=$version \
+          sudo docker build -f ./tensorflow/Dockerfile \
           -t registry.us-west-1.aliyuncs.com/njupt-isl/tensorflow-cpu .
