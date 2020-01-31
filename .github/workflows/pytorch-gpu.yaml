@@ -11,4 +11,4 @@ jobs:
           version: "1.4"
         run: |
           sudo docker build -f ./tensorflow/Dockerfile \
-          -t registry.us-west-1.aliyuncs.com/njupt-isl/pytorch-gpu:$version .
+          -t registry.us-west-1.aliyuncs.com/njupt-isl/pytorch-gpu .
