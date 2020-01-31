@@ -7,8 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build Dockerfile
-        env:
-          version: "1.4"
         run: |
           sudo docker build -f ./tensorflow/Dockerfile \
           -t registry.us-west-1.aliyuncs.com/njupt-isl/pytorch-gpu .
