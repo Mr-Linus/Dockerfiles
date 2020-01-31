@@ -15,39 +15,8 @@ jobs:
           echo $password | sudo docker login "registry.us-west-1.aliyuncs.com" -u "$username" --password-stdin
       - name: Build Dockerfile
         env:
-          version: 2.0
+          version: "2.0"
         run: |
           sudo docker build -f ./tensorflow/gpu/Dockerfile \
           --build-arg TF_PACKAGE_VERSION=$version \
           -t registry.us-west-1.aliyuncs.com/njupt-isl/tensorflow-gpu:$version .
-      - name: Push Dockerfile
-        env:
-          version: 2.0
-        run: |
-          sudo docker push registry.us-west-1.aliyuncs.com/njupt-isl/tensorflow-gpu:$version
-
-  TF_1_15:
-    name: Tensorflow-GPU-V1.15
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Check Docker
-        env:
-          username: ${{ secrets.username }}
-          password: ${{ secrets.password }}
-        run: |
-          docker version
-          echo $password | sudo docker login "registry.us-west-1.aliyuncs.com" -u "$username" --password-stdin
-
-      - name: Build Dockerfile
-        env:
-          version: 1.15
-        run: |
-          sudo docker build -f ./tensorflow/gpu/Dockerfile \
-          --build-arg TF_PACKAGE_VERSION=$version \
-          -t registry.us-west-1.aliyuncs.com/njupt-isl/tensorflow-gpu:$version .
-      - name: Push Dockerfile
-        env:
-          version: 1.15
-        run: |
-          sudo docker push registry.us-west-1.aliyuncs.com/njupt-isl/tensorflow-gpu:$version
