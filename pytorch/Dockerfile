@@ -72,8 +72,6 @@ RUN apt-get update && apt-get install -y \
     && ln -s $(which ${PYTHON}) /usr/bin/python
 
 # Installs the latest version by default.
-ARG PT_PACKAGE=pytorch
-ARG PT_PACKAGE_VERSION="1.4"
-RUN ${PIP} install ${PT_PACKAGE}${PT_PACKAGE_VERSION:+==${PT_PACKAGE_VERSION}}
+RUN ${PIP} install torch==1.4 torchvision==1.4
 EXPOSE 22
 CMD    ["/usr/sbin/sshd", "-D"]
