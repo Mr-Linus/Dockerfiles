@@ -2,8 +2,8 @@ name: Tensorflow-CPU
 on: push
 
 jobs:
-  2.0:
-   name: Tensorflow-CPU-V2.0
+  TF_2_0:
+    name: Tensorflow-CPU-V2.0
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,20 +27,19 @@ jobs:
         run: |
           sudo docker push registry.cn-hangzhou.aliyuncs.com/njupt-isl/tensorflow-cpu:$version
 
-  1.15:
+  TF_1_15:
     name: Tensorflow-CPU-V1.15
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - name: Check Docker
-          env:
-            username: ${{ secrets.username }}
-            password: ${{ secrets.password }}
-          run: |
-            docker version
-            echo $password | sudo docker login "registry.cn-hangzhou.aliyuncs.com" -u "$username" --password-stdin
-
-        - name: Build Dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check Docker
+        env:
+          username: ${{ secrets.username }}
+          password: ${{ secrets.password }}
+        run: |
+          docker version
+          echo $password | sudo docker login "registry.cn-hangzhou.aliyuncs.com" -u "$username" --password-stdin
+      - name: Build Dockerfile
         env:
           version: 1.15
         run: |

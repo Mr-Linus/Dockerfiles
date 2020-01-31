@@ -2,7 +2,7 @@ name: Tensorflow-GPU
 on: push
 
 jobs:
-  2.0:
+  TF_2_0:
     name: Tensorflow-GPU-V2.0
     runs-on: ubuntu-latest
     steps:
@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo docker push registry.cn-hangzhou.aliyuncs.com/njupt-isl/tensorflow-gpu:$version
 
-  1.15:
+  TF_1_15:
     name: Tensorflow-GPU-V1.15
     runs-on: ubuntu-latest
     steps:
