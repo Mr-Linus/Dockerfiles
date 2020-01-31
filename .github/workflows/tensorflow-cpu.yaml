@@ -2,7 +2,7 @@ name: Tensorflow-CPU
 on: push
 
 jobs:
-  build_v2.0:
+  2.0:
    name: Tensorflow-CPU-V2.0
     runs-on: ubuntu-latest
     steps:
@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo docker push registry.cn-hangzhou.aliyuncs.com/njupt-isl/tensorflow-cpu:$version
 
-  build_v1.15:
+  1.15:
     name: Tensorflow-CPU-V1.15
       runs-on: ubuntu-latest
       steps:
