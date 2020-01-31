@@ -1,6 +1,5 @@
 name: Tensorflow-GPU
 on: push
-
 jobs:
   TF_2_0:
     name: Tensorflow-GPU-V2.0
