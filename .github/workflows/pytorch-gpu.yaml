@@ -12,16 +12,16 @@ jobs:
           password: ${{ secrets.password }}
         run: |
           docker version
-          echo $password | sudo docker login "registry.cn-hangzhou.aliyuncs.com" -u "$username" --password-stdin
+          echo $password | sudo docker login "registry.us-west-1.aliyuncs.com" -u "$username" --password-stdin
       - name: Build Dockerfile
         env:
           version: "1.4"
         run: |
           sudo docker build -f ./tensorflow/gpu/Dockerfile \
           --build-arg PT_PACKAGE_VERSION=$version \
-          -t registry.cn-hangzhou.aliyuncs.com/njupt-isl/pytorch-gpu:$version .
+          -t registry.us-west-1.aliyuncs.com/njupt-isl/pytorch-gpu:$version .
       - name: Push Dockerfile
         env:
           version: "1.4"
         run: |
-          sudo docker push registry.cn-hangzhou.aliyuncs.com/njupt-isl/pytorch-gpu:$version
+          sudo docker push registry.us-west-1.aliyuncs.com/njupt-isl/pytorch-gpu:$version
