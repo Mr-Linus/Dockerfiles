@@ -1,4 +1,4 @@
-name: Pytorch-GPU
+name: Pytorch-GPU-V1.4
 on: push
 jobs:
   PT_1_4:
@@ -6,22 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Check Docker
-        env:
-          username: ${{ secrets.username }}
-          password: ${{ secrets.password }}
-        run: |
-          docker version
-          echo $password | sudo docker login "registry.us-west-1.aliyuncs.com" -u "$username" --password-stdin
       - name: Build Dockerfile
         env:
           version: "1.4"
         run: |
-          sudo docker build -f ./tensorflow/gpu/Dockerfile \
-          --build-arg PT_PACKAGE_VERSION=$version \
+          sudo docker build -f ./tensorflow/Dockerfile \
           -t registry.us-west-1.aliyuncs.com/njupt-isl/pytorch-gpu:$version .
-      - name: Push Dockerfile
-        env:
-          version: "1.4"
-        run: |
-          sudo docker push registry.us-west-1.aliyuncs.com/njupt-isl/pytorch-gpu:$version
