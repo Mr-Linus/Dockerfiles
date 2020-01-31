@@ -16,8 +16,9 @@ RUN ln -s $(which python3) /usr/local/bin/python \
     && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
     && mkdir /root/.ssh \
     && pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
 ARG TF_PACKAGE=tensorflow
 ARG TF_PACKAGE_VERSION="2.0"
-RUN ${PIP} install ${TF_PACKAGE}${TF_PACKAGE_VERSION:+==${TF_PACKAGE_VERSION}}
+RUN pip3 install ${TF_PACKAGE}${TF_PACKAGE_VERSION:+==${TF_PACKAGE_VERSION}}
 EXPOSE 22
 CMD    ["/usr/sbin/sshd", "-D"]
