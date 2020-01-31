@@ -29,7 +29,7 @@
 
 - #### GPU 版本
 
-##### 镜像地址: registry.cn-hangzhou.aliyuncs.com/njupt-isl/pytorch-cpu:\<Version\>
+##### 镜像地址: registry.cn-hangzhou.aliyuncs.com/njupt-isl/pytorch-gpu:\<Version\>
 
 | <Version\> | Status                                                       |
 | ---------- | ------------------------------------------------------------ |
