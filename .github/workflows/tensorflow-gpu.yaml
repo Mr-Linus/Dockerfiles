@@ -1,8 +1,8 @@
-name: Tensorflow-GPU-V2.0
+name: Tensorflow-GPU-V2.0-CN
 on: push
 jobs:
   TF_2_0:
-    name: Tensorflow-GPU-V2.0
+    name: Tensorflow-GPU-V2.0-CN
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
