@@ -12,9 +12,11 @@ ARG LIBNVINFER=6.0.1-1
 ARG LIBNVINFER_MAJOR_VERSION=6
 # Needed for string substitution
 SHELL ["/bin/bash", "-c"]
-
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
+     && sed -i s@/developer.download.nvidia.com/compute/cuda/repos/@/mirrors.aliyun.com/nvidia-cuda/@g /etc/apt/sources.list.d/cuda.list
 # Pick up some TF dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get clean && \
+    apt-get update && apt-get install -y --no-install-recommends \
         cuda-command-line-tools-${CUDA/./-} \
         # There appears to be a regression in libcublas10=10.2.2.89-1 which
         # prevents cublas from initializing in TF. See
@@ -66,10 +68,11 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 RUN apt-get update && apt-get install -y \
     ${PYTHON} \
     ${PYTHON}-pip \
-    && ${PIP} --no-cache-dir install --upgrade \
+    && ${PIP} --no-cache-dir install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade \
     pip \
     setuptools \
-    && ln -s $(which ${PYTHON}) /usr/bin/python
+    && ln -s $(which ${PYTHON}) /usr/bin/python \
+    && /usr/bin/python -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple 
 
 # Options:
 #   tensorflow
@@ -80,6 +83,6 @@ RUN apt-get update && apt-get install -y \
 # Installs the latest version by default.
 ARG TF_PACKAGE=tensorflow-gpu
 ARG TF_PACKAGE_VERSION="2.0"
-RUN ${PIP} install ${TF_PACKAGE}${TF_PACKAGE_VERSION:+==${TF_PACKAGE_VERSION}}
+RUN ${PIP} install -i https://pypi.tuna.tsinghua.edu.cn/simple ${TF_PACKAGE}${TF_PACKAGE_VERSION:+==${TF_PACKAGE_VERSION}} 
 EXPOSE 22
 CMD    ["/usr/sbin/sshd", "-D"]
