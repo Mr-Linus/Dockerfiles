@@ -67,10 +67,11 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 RUN apt-get update && apt-get install -y \
     ${PYTHON} \
     ${PYTHON}-pip \
-    && ${PIP} --no-cache-dir install --upgrade \
+    && ${PIP} --no-cache-dir install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade \
     pip \
     setuptools \
-    && ln -s $(which ${PYTHON}) /usr/bin/python
+    && ln -s $(which ${PYTHON}) /usr/bin/python \
+    && /usr/bin/python -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 # Installs the latest version by default.
 RUN ${PIP} install torch==1.4 torchvision
