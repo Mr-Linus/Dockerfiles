@@ -13,7 +13,9 @@ ARG LIBNVINFER_MAJOR_VERSION=6
 # Needed for string substitution
 SHELL ["/bin/bash", "-c"]
 RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
-     && sed -i s@/developer.download.nvidia.com/compute/cuda/repos/@/mirrors.aliyun.com/nvidia-cuda/@g /etc/apt/sources.list.d/cuda.list
+     && sed -i s@/developer.download.nvidia.com/compute/cuda/repos/@/mirrors.aliyun.com/nvidia-cuda/@g  \
+     /etc/apt/sources.list.d/cuda.list \
+     && sed -i s@/security.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 # Pick up some TF dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         cuda-command-line-tools-${CUDA/./-} \
@@ -67,11 +69,12 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 RUN apt-get update && apt-get install -y \
     ${PYTHON} \
     ${PYTHON}-pip \
-    && ${PIP} --no-cache-dir install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade \
-    pip \
-    setuptools \
-    && ln -s $(which ${PYTHON}) /usr/bin/python \
-    && /usr/bin/python -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+    && ln -s $(which ${PYTHON}) /usr/bin/python
+
+RUN ${PIP} --no-cache-dir install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade \
+     pip \
+     setuptools \
+    && ${PIP} config set global.index-url https://mirrors.aliyun.com/pypi/simple/
 
 # Options:
 #   tensorflow
