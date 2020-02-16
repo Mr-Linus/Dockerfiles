@@ -33,6 +33,7 @@
 
 | <Version\> | Status                                                       |
 | ---------- | ------------------------------------------------------------ |
+| 1.0        | ![Pytorch-GPU-V1.4](https://github.com/NJUPT-ISL/Dockerfiles/workflows/Pytorch-GPU-V1.0/badge.svg) |
 | 1.4        | ![Pytorch-GPU-V1.4](https://github.com/NJUPT-ISL/Dockerfiles/workflows/Pytorch-GPU-V1.4/badge.svg) |
 
 
