@@ -77,6 +77,6 @@ RUN ${PIP} --no-cache-dir install -i https://mirrors.aliyun.com/pypi/simple/ --u
     && ${PIP} config set global.index-url https://mirrors.aliyun.com/pypi/simple/
 
 # Installs the latest version by default.
-RUN ${PIP} install torch==1.4 torchvision
+RUN ${PIP} install torch==1.0 torchvision
 EXPOSE 22
 CMD    ["/usr/sbin/sshd", "-D"]

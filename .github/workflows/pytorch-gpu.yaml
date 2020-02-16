@@ -1,8 +1,8 @@
-name: Pytorch-GPU-V1.4
+name: Pytorch-GPU-V1.0
 on: push
 jobs:
   PT_1_4:
-    name: Pytorch-GPU-V1.4
+    name: Pytorch-GPU-V1.0
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
