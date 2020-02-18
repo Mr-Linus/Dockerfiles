@@ -36,6 +36,13 @@
 | 1.0        | ![Pytorch-GPU-V1.4](https://github.com/NJUPT-ISL/Dockerfiles/workflows/Pytorch-GPU-V1.0/badge.svg) |
 | 1.4        | ![Pytorch-GPU-V1.4](https://github.com/NJUPT-ISL/Dockerfiles/workflows/Pytorch-GPU-V1.4/badge.svg) |
 
+- #### CPU 版本
+
+##### 镜像地址: registry.cn-hangzhou.aliyuncs.com/njupt-isl/pytorch-cpu:\<Version\>
+
+| <Version\> | Status                                                       |
+| ---------- | ------------------------------------------------------------ |
+| 1.4        | ![Pytorch-CPU-V1.4](https://github.com/NJUPT-ISL/Dockerfiles/workflows/Pytorch-CPU-V1.4/badge.svg) |
 
 ## Contact us
 ![QQ Group](https://github.com/NJUPT-ISL/Breakfast/blob/master/img/qrcode_1581334380545.jpg)
