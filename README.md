@@ -12,7 +12,7 @@
 
 | \<Version\> | Status                                                       |
 | ----------- | ------------------------------------------------------------ |
-| 2.1         | ![Tensorflow-GPU-V2.1](https://github.com/NJUPT-ISL/Dockerfiles/workflows/Tensorflow-GPU-V2.1/badge.svg) |
+| 2.1         | ![Tensorflow-GPU-V2.1](https://github.com/NJUPT-ISL/Dockerfiles/workflows/Tensorflow-GPU-V2.1-CN/badge.svg) |
 | 2.0         | ![Tensorflow-GPU-V2.0](https://github.com/NJUPT-ISL/Dockerfiles/workflows/Tensorflow-GPU-V2.0/badge.svg) |
 | 1.15        | ![Tensorflow-GPU-V1.15](https://github.com/NJUPT-ISL/Dockerfiles/workflows/Tensorflow-GPU-V1.15/badge.svg) |
 
