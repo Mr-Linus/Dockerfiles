@@ -10,12 +10,15 @@ ARG CUDNN_MAJOR_VERSION=7
 ARG LIB_DIR_PREFIX=x86_64
 ARG LIBNVINFER=6.0.1-1
 ARG LIBNVINFER_MAJOR_VERSION=6
+
 # Needed for string substitution
 SHELL ["/bin/bash", "-c"]
+
 RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
      && sed -i s@/developer.download.nvidia.com/compute/cuda/repos/@/mirrors.aliyun.com/nvidia-cuda/@g  \
      /etc/apt/sources.list.d/cuda.list \
      && sed -i s@/security.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+
 # Pick up some TF dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         cuda-command-line-tools-${CUDA/./-} \
