@@ -14,8 +14,7 @@ RUN ln -s $(which python3) /usr/local/bin/python \
     && echo 'root:GeekCloud' |chpasswd \
     && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
-    && mkdir /root/.ssh \
-    && pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+    && mkdir /root/.ssh
 
 
 RUN pip3 install torch==1.4 torchvision
