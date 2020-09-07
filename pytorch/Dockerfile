@@ -50,9 +50,9 @@ RUN     apt-get update && \
 # For CUDA profiling, TensorFlow requires CUPTI.
 ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
-ARG _PY_SUFFIX=3
-ARG PYTHON=python${_PY_SUFFIX}
-ARG PIP=pip${_PY_SUFFIX}
+
+ARG PYTHON_VERSION=3.7
+ARG PIP=pip
 
 # See http://bugs.python.org/issue19846
 ENV LANG C.UTF-8
@@ -63,15 +63,17 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
     && echo "/usr/local/cuda/lib64/stubs" > /etc/ld.so.conf.d/z-cuda-stubs.conf \
     && ldconfig
 
-RUN apt-get update && apt-get install -y \
-    ${PYTHON} \
-    ${PYTHON}-pip \
-    && ${PIP} --no-cache-dir install --upgrade \
-    pip \
-    setuptools \
-    && ln -s $(which ${PYTHON}) /usr/bin/python
+RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
+     chmod +x ~/miniconda.sh && \
+     ~/miniconda.sh -b -p /opt/conda && \
+     rm ~/miniconda.sh && \
+     /opt/conda/bin/conda install -y python=$PYTHON_VERSION numpy pyyaml scipy ipython mkl mkl-include ninja cython typing && \
+     /opt/conda/bin/conda install -y -c pytorch magma-cuda100 && \
+     /opt/conda/bin/conda clean -ya
+
+ENV PATH /opt/conda/bin:$PATH
 
 # Installs the latest version by default.
-RUN ${PIP} install torch==1.4 torchvision
+RUN ${PIP} install torch==1.3 torchvision
 EXPOSE 22
 CMD    ["/usr/sbin/sshd", "-D"]
