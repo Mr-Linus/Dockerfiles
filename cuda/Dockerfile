@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu16.04
+FROM nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04
 
 COPY config /config
 
